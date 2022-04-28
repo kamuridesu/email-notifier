@@ -20,7 +20,6 @@ jobs:
           END
         env:
             SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
-            SSH_HOST: ${{ secrets.SSH_HOST }}
         
       - name: "Update repository"
         run: ssh admin@kamuridesu.tech "rm -rf email-notifier; git clone https://github.com/kamuridesu/email-notifier.git"
