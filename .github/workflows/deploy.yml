@@ -28,9 +28,9 @@ jobs:
       - name: "Parse token"
         run: |
           ssh admin@kamuridesu.tech "cd email-notifier; curl https://gist.githubusercontent.com/kamuridesu/970883ca8b505f8d96d80a794e9a612b/raw/8e05c60fa223f25377546ceba05450de12b5e6fe/pypelineJsonHelper.sh | bash"
-      - name: debug
-        run: ssh admin@kamuridesu.tech "ls -la"
+      # - name: debug
+      #   run: ssh admin@kamuridesu.tech "cd email-notifier; ls -la"
       - name: "Build image"
-        run: ssh admin@kamuridesu.tech "cd email-notifier; sudo docker build -t email-notifier ."
+        run: ssh admin@kamuridesu.tech "cd email-notifier && sudo docker build -t email-notifier ."
       - name: "Deploy new version"
         run: ssh admin@kamuridesu.tech "sudo docker rm -f email-notifier; sudo docker run --name email-notifier -d email-notifier"
