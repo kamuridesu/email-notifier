@@ -33,4 +33,4 @@ jobs:
       - name: "Build image"
         run: ssh admin@kamuridesu.tech "cd email-notifier && sudo docker build -t email-notifier ."
       - name: "Deploy new version"
-        run: ssh admin@kamuridesu.tech "sudo docker rm -f email-notifier; sudo docker run --name email-notifier -d email-notifier"
+        run: ssh admin@kamuridesu.tech "sudo docker rm -f email-notifier; sudo docker run --name email-notifier --restart always -d email-notifier"
