@@ -27,7 +27,7 @@ jobs:
         run: ssh admin@kamuridesu.tech 'echo "${{ secrets.TOKEN }}" > /home/admin/email-notifier/tokens.json'
       - name: "Parse token"
         run: |
-          ssh admin@kamuridesu.tech "cd email-notifier;python -c \"globals().update({'add_var': lambda x, y: globals().update({x: y})}); add_var('content', '$(cat tokens.json)'); add_var('split_content', content.split(',')); add_var('split_content', [x.strip() for x in split_content]); add_var('content', [{x.split(':')[0].replace('{', '').strip(): ':'.join(x.split(':')[1:]).replace('}', '').strip()} for x in split_content]); add_var('new_content', {});[new_content.update(x) for x in content]; print(__import__('json').dumps(new_content))\" > tokens.json"
+          ssh admin@kamuridesu.tech "sleep 3;cd email-notifier;python -c \"globals().update({'add_var': lambda x, y: globals().update({x: y})}); add_var('content', '$(cat tokens.json)'); add_var('split_content', content.split(',')); add_var('split_content', [x.strip() for x in split_content]); add_var('content', [{x.split(':')[0].replace('{', '').strip(): ':'.join(x.split(':')[1:]).replace('}', '').strip()} for x in split_content]); add_var('new_content', {});[new_content.update(x) for x in content]; print(__import__('json').dumps(new_content))\" > tokens.json"
       - name: "Build image"
         run: ssh admin@kamuridesu.tech "cd email-notifier; sudo docker build -t email-notifier ."
       - name: "Deploy new version"
