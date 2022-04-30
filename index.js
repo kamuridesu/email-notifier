@@ -25,7 +25,7 @@ n.on('end', () => n.start()) // session closed
     let from = mail.from
     let helper = []
     for(let f of from) {
-      helper.push(`${helper.name}:${helper.address}`) 
+      helper.push(`${f.name}:${f.address}`) 
     }
 
     let content = '';
