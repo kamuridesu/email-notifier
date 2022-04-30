@@ -21,6 +21,8 @@ const n = notifier(imap);
 n.on('end', () => n.start()) // session closed
   .on('mail', mail => {
     console.log(mail.subject);
+    // console.log(mail.body);
+    console.log(mail);
     bot.telegram.sendMessage(ID,`⚠️ Novo Alerta ⚠️ \n ${mail.subject}`)
   })
   .start();
