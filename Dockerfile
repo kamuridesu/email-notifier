@@ -1,5 +1,5 @@
 FROM node:latest
-COPY ./packages.json .
+COPY ./package.json .
 RUN npm i
 COPY . .
 CMD ["node", "index.js"]
