@@ -21,8 +21,18 @@ const n = notifier(imap);
 n.on('end', () => n.start()) // session closed
   .on('mail', mail => {
     console.log(mail.subject);
-    // console.log(mail.body);
     console.log(mail);
-    bot.telegram.sendMessage(ID,`⚠️ Novo Alerta ⚠️ \n ${mail.subject}`)
+    let from = mail.from
+    let helper = []
+    for(let f of from) {
+      helper.push(`${helper.name}:${helper.address}`) 
+    }
+
+    let content = '';
+    content += "Novo email: \n\n"
+    content += `De: ${helper.join(', ')}\n`
+    content += `Assunto: ${mail.subject}\n\n`
+    content += `Mensagem: ${mail.text}`
+    bot.telegram.sendMessage(ID, content)
   })
   .start();
