@@ -12,13 +12,13 @@ const imap = {
   user: 'luiz.k.amorim@gmail.com',
   password: passwd,
   host: 'imap.gmail.com',
-  port: 993, // imap port
-  tls: true,// use secure connection
+  port: 993,
+  tls: true,
   tlsOptions: { rejectUnauthorized: false }
 };
 
 const n = notifier(imap);
-n.on('end', () => n.start()) // session closed
+n.on('end', () => n.start())
   .on('mail', mail => {
     console.log(mail.subject);
     let from = mail.from
